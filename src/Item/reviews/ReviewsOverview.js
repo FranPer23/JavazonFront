@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function ReviewOverview(props) {
   const [tempRev, setTempRev] = useState(props.rev);
@@ -25,18 +29,16 @@ export default function ReviewOverview(props) {
                 Made in: {props.rev.date}
               </h6>
 
-              <button
+              <FontAwesomeIcon
                 className="btn btn-danger"
                 onClick={() => props.delete(props.rev)}
-              >
-                DELETE
-              </button>
-              <button
+                icon={faTrash}
+              />
+              <FontAwesomeIcon
                 className="btn btn-warning ms-2"
                 onClick={() => props.setUpdatable(props.rev, true)}
-              >
-                EDIT
-              </button>
+                icon={faPenToSquare}
+              />
             </div>
           </div>
         </div>
@@ -47,6 +49,15 @@ export default function ReviewOverview(props) {
       <>
         <div className="col-4 d-flex justify-content-center text-center">
           <div className="card" style={{ width: "20rem" }}>
+            <div className="position-relative m-3">
+              {" "}
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className="position-absolute top-0 end-0"
+                onClick={() => props.setUpdatable(props.rev, false)}
+              />
+            </div>
+
             <div className="card-body">
               <div className="input-group mb-3 card-title">
                 <span className="input-group-text">Sender</span>
@@ -67,6 +78,7 @@ export default function ReviewOverview(props) {
                   value={tempRev.score}
                   onChange={synchronize}
                 />
+                <div className="form-text">Inserire un num. tra 1 e 10</div>
               </div>
               <div className="input-group mb-3 card-title">
                 <span className="input-group-text">Pubblicata il:</span>
@@ -80,18 +92,11 @@ export default function ReviewOverview(props) {
               </div>
 
               <div>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => props.setUpdatable(props.rev, false)}
-                >
-                  CANCEL
-                </button>
-                <button
+                <FontAwesomeIcon
                   className="btn btn-success ms-2"
                   onClick={() => props.update(tempRev)}
-                >
-                  SAVE
-                </button>
+                  icon={faCheck}
+                />
               </div>
             </div>
           </div>

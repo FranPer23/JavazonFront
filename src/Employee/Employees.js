@@ -108,7 +108,7 @@ const Employees = (props) => {
               <EditEmployee
                 key={empl.id}
                 editEmployee={editEmployee}
-                annulla={annullaModifiche}
+                annullaModifiche={annullaModifiche}
                 employee={empl}
               />
             ) : (

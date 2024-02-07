@@ -13,25 +13,27 @@ const EditEmployee = (props) => {
   function sendForm() {
     axios.put(`/employee/${empEdit.id}`, empEdit).then((response) => {
       props.editEmployee(response.data);
-      props.annulla();
+      props.annullaModifiche();
     });
   }
 
   return (
     <>
       <div className="container my-2">
-        <div className="card ">
-          <label>Image</label>
-
-          <img
-            src={empEdit.imgUrl}
-            className="card-img-top object-fit-contain"
-            alt="img employee"
-            onChange={synchronize}
-          />
-          <div className="card-body">
-            <div className="input-group mb-3">
+        <div className="card-body d-flex mt-3">
+          <div className="input-group mb-3 justify-content-center ">
+            <div className="card-text">
               <form>
+                <label>Image</label>
+
+                <input
+                  name="imgUrl"
+                  type="text"
+                  value={empEdit.imgUrl}
+                  className="form-control"
+                  alt="img employee"
+                  onChange={synchronize}
+                ></input>
                 <label>Name</label>
 
                 <input
@@ -115,7 +117,7 @@ const EditEmployee = (props) => {
                   className="btn btn-warning"
                   type="button"
                   value="Annulla"
-                  onClick={empEdit.annulla}
+                  onClick={empEdit.annullaModifiche}
                 />
               </form>
             </div>

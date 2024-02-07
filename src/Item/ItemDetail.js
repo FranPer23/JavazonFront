@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewOverview from "./reviews/ReviewsOverview";
+import NewReview from "./reviews/NewReview";
 
 export default function ItemDetail(props) {
   let { id } = useParams(); //vado a prendere dall'url la path variable id
@@ -24,7 +25,7 @@ export default function ItemDetail(props) {
     rev.item_id = id;
     axios.post("/items", rev).then((response) => {
       let clone = { ...item };
-      clone.documents.push(response);
+      clone.reviews.push(response.data);
       setItem(clone);
     });
   }
@@ -172,6 +173,9 @@ export default function ItemDetail(props) {
           <div className="col-4 ">
             {!updating && readOnlyCard}
             {updating && updatableCard}
+            <br />
+            <br />
+            <NewReview insert={addReview} />
           </div>
           <div className="col-8 bg-light ">
             <h4 className="text-center mt-3">Recensioni</h4>

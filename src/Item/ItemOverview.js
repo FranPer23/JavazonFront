@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function ItemOverview({
   id,
@@ -6,6 +9,7 @@ export default function ItemOverview({
   description,
   price,
   img_url,
+  deleteMe,
 }) {
   return (
     <>
@@ -24,6 +28,13 @@ export default function ItemOverview({
             <Link className="card-link" to={"/itemdetail/" + id}>
               Maggiorni informazioni
             </Link>
+            <br />
+            <button
+              onClick={() => deleteMe(id)}
+              className="btn btn-black btn-sm"
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
           </div>
         </div>
       </div>

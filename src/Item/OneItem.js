@@ -31,6 +31,7 @@ const OneItem = (props) => {
             >
               EDIT
             </button>
+
             <button
               type="button"
               className="btn btn-danger"

@@ -11,11 +11,25 @@ export default function AllItem(props) {
     });
   }, []);
 
+  function deleteItem(id) {
+    axios
+      .delete("/items/" + id)
+      .then(() => {
+        let clone = [...items];
+        let pos = clone.findIndex((i) => i.id == id);
+        clone.splice(pos, 1);
+        setItems(clone);
+      })
+      .catch(() => {
+        alert("No, ha dei figli, chi penserà ai bambini");
+      });
+  }
+
   return (
     <>
       <div className="row">
         {items.map((i) => (
-          <ItemOverview {...i} />
+          <ItemOverview {...i} deleteMe={deleteItem} />
         ))}
       </div>
     </>
